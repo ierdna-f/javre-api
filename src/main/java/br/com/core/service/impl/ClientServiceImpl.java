@@ -63,18 +63,21 @@ public class ClientServiceImpl implements ClientService {
         try {
             for (int i = 0; i < this.lc.size(); i++) {
                 if (this.lc.get(i).getId().equals(client.getId())) {
+                    Utils.isValidClient(client);
                     this.lc.set(i, client);
                     return new ResponseEntity(
                             "Cliente id: " + client.getId() + " editado com sucesso!",
                             HttpStatus.OK);
                 }
             }
-
             return new ResponseEntity(
                     "Cliente id: " + client.getId() + " Não Encontrado ",
                     HttpStatus.NOT_FOUND);
 
-        } catch (Exception e) {
+        }catch (ClassException cex){
+            return new ResponseEntity(cex.getMsg(), cex.getStatus());
+        }
+        catch (Exception e) {
             return new ResponseEntity(
                     "Erro ao editar cliente ",
                     HttpStatus.INTERNAL_SERVER_ERROR);
@@ -91,10 +94,15 @@ public class ClientServiceImpl implements ClientService {
     }
 
     public ResponseEntity editOrCreat(Client c) {
-        if (lc.stream().map(Client::getId).collect(Collectors.toList()).contains(c.getId())) {
-            return updateClient(c);
+        try {
+            Utils.isValidClient(c);
+            if (lc.stream().map(Client::getId).collect(Collectors.toList()).contains(c.getId())) {
+                return updateClient(c);
+            }
+            lc.add(c);
+        }catch(ClassException cex){
+            return new ResponseEntity(cex.getMsg(), cex.getStatus());
         }
-        lc.add(c);
         return new ResponseEntity("Cliente criado com sucesso!", HttpStatus.OK);
     }
 
