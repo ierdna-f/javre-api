@@ -34,7 +34,7 @@ public class SwaggerConfig {
                         "https://www.linkedin.com/in/andrei-figueiredo-289b97115/",
                         "b.andrei.fig@gmail.com"),
                 "Apache License Version 2.0",
-                "https://www.apache.org/license.html", new ArrayList<>()
+                "https://www.apache.org/licenses/LICENSE-2.0", new ArrayList<>()
         );
     }
 }
