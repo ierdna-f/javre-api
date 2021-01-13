@@ -36,12 +36,7 @@ public class ClientController extends TestCase {
     @PostMapping("/adicionar")
     @ApiOperation(value="Adiciona novos clientes")
     public ResponseEntity addClient(@Valid @RequestBody Client client) {
-       try{
            return clientServiceImpl.add(client);
-       }catch (Exception e){
-           e.printStackTrace();
-       }
-        return null;
     }
 
     @DeleteMapping("/delete/{id}")

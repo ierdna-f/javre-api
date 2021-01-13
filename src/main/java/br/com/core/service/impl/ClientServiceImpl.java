@@ -22,6 +22,9 @@ public class ClientServiceImpl implements ClientService {
         lc = new ArrayList<>();
     }
 
+    /*
+        Campos obrigatórios do cliente são ID e CPF
+     */
     public ResponseEntity add(Client c) {
         if (findById(c.getId()) != null) {
             return new ResponseEntity("Cliente id: " + c.getId() + " já existe!", HttpStatus.FORBIDDEN);
