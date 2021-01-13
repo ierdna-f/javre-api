@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -34,13 +35,18 @@ public class ClientController extends TestCase {
 
     @PostMapping("/adicionar")
     @ApiOperation(value="Adiciona novos clientes")
-    public ResponseEntity addClient(@RequestBody Client client) {
-        return clientServiceImpl.add(client);
+    public ResponseEntity addClient(@Valid @RequestBody Client client) {
+       try{
+           return clientServiceImpl.add(client);
+       }catch (Exception e){
+           e.printStackTrace();
+       }
+        return null;
     }
 
     @DeleteMapping("/delete/{id}")
     @ApiOperation(value="Deleta um cliente")
-    public ResponseEntity deleteClient(@RequestParam String token, @PathVariable Long id) {
+    public ResponseEntity deleteClient(@Valid @RequestParam String token, @PathVariable Long id) {
         return clientServiceImpl.deleteClient(id, token);
     }
 
@@ -52,13 +58,13 @@ public class ClientController extends TestCase {
 
     @PatchMapping("/editar")
     @ApiOperation(value="Edita um cliente")
-    public ResponseEntity editClient(@RequestBody Client client) {
+    public ResponseEntity editClient(@Valid @RequestBody Client client) {
         return clientServiceImpl.updateClient(client);
     }
 
     @PutMapping("/editar")
     @ApiOperation(value="Edita ou cria um novo cliente caso ele não exista")
-    public ResponseEntity editOrCreatClient(@RequestBody Client client) {
+    public ResponseEntity editOrCreatClient(@Valid @RequestBody Client client) {
         return clientServiceImpl.editOrCreat(client);
     }
 
