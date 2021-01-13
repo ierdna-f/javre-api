@@ -12,6 +12,10 @@ public class Utils {
     private static Pattern PATTERN_GENERIC = Pattern.compile("[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}");
     private static Pattern PATTERN_NUMBERS = Pattern.compile("(?=^((?!((([0]{11})|([1]{11})|([2]{11})|([3]{11})|([4]{11})|([5]{11})|([6]{11})|([7]{11})|([8]{11})|([9]{11})))).)*$)([0-9]{11})");
 
+    /*
+        Bloco de validação das informações do cliente, seguindo padrões de CPF e id Positivo > 0 não duplicado
+        além de um certo 'padrão' de emails.
+     */
     public static boolean isValidClient(Client c) throws ClassException {
         try {
             if (c != null) {
