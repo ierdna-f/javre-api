@@ -113,7 +113,7 @@
                 <version>3.0.3</version>
                 <configuration>
                     <processTypes>
-                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* CoreApplication</web>
+                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* br.com.core.CoreApplication</web>
                     </processTypes>
                 </configuration>
             </plugin>
