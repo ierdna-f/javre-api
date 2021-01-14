@@ -14,6 +14,10 @@
     <name>core</name>
     <description>Projeto Alelo</description>
 
+    <properties>
+        <java.version>11</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -107,6 +111,11 @@
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>3.0.3</version>
+                <configuration>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -cp target/classes:target/dependency/* CoreApplication</web>
+                    </processTypes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
